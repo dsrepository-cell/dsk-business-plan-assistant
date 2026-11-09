@@ -96,7 +96,7 @@ export type Database = {
           id: string
           sector_answers: Json
           sector_id: string
-          stage: Database["public"]["Enums"]["business_stage"]
+          stage: Database["public"]["Enums"]["business_stage"] | null
           stated_monthly_turnover: number | null
           status: Database["public"]["Enums"]["case_status"]
           updated_at: string
@@ -109,7 +109,7 @@ export type Database = {
           id?: string
           sector_answers?: Json
           sector_id: string
-          stage: Database["public"]["Enums"]["business_stage"]
+          stage?: Database["public"]["Enums"]["business_stage"] | null
           stated_monthly_turnover?: number | null
           status?: Database["public"]["Enums"]["case_status"]
           updated_at?: string
@@ -122,7 +122,7 @@ export type Database = {
           id?: string
           sector_answers?: Json
           sector_id?: string
-          stage?: Database["public"]["Enums"]["business_stage"]
+          stage?: Database["public"]["Enums"]["business_stage"] | null
           stated_monthly_turnover?: number | null
           status?: Database["public"]["Enums"]["case_status"]
           updated_at?: string
@@ -219,7 +219,7 @@ export type Database = {
           dependents: number | null
           earning_members: number | null
           education: string | null
-          full_name: string
+          full_name: string | null
           gender: string | null
           household_members: number | null
           id: string
@@ -239,7 +239,7 @@ export type Database = {
           dependents?: number | null
           earning_members?: number | null
           education?: string | null
-          full_name: string
+          full_name?: string | null
           gender?: string | null
           household_members?: number | null
           id?: string
@@ -259,7 +259,7 @@ export type Database = {
           dependents?: number | null
           earning_members?: number | null
           education?: string | null
-          full_name?: string
+          full_name?: string | null
           gender?: string | null
           household_members?: number | null
           id?: string
@@ -919,7 +919,7 @@ export type Database = {
       }
     }
     Functions: {
-      [_ in never]: never
+      create_case: { Args: { p_sector_id: string }; Returns: string }
     }
     Enums: {
       app_role: "admin" | "reviewer" | "operator"
