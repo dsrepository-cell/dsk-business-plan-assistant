@@ -1,0 +1,1136 @@
+{
+  "sectors": [
+    {
+      "id": "dairy",
+      "name": "Dairy",
+      "icon": "Milk",
+      "tint": "#2563eb",
+      "defaultUnit": "litre",
+      "questions": [
+        {
+          "key": "animals",
+          "label": "How many milking animals does she have?",
+          "icon": "PawPrint",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "buyer",
+          "label": "Who does she mainly sell to?",
+          "icon": "Landmark",
+          "type": "select",
+          "options": [
+            "Cooperative",
+            "Collection centre",
+            "Retail customers",
+            "Other"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "vet",
+          "label": "Is veterinary support available?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "shed",
+          "label": "Is a shed available?",
+          "icon": "Home",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "lactation",
+          "label": "Average milk yield per animal per day (litres)",
+          "icon": "Droplets",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": "existing"
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Feed & fodder",
+          "class": "direct"
+        },
+        {
+          "name": "Veterinary care",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "poultry",
+      "name": "Poultry",
+      "icon": "Egg",
+      "tint": "#d97706",
+      "defaultUnit": "bird / egg",
+      "questions": [
+        {
+          "key": "birdType",
+          "label": "Bird type",
+          "icon": "Egg",
+          "type": "select",
+          "options": [
+            "Layer",
+            "Broiler",
+            "Backyard / country"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "birds",
+          "label": "Number of birds",
+          "icon": "PawPrint",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "vaccination",
+          "label": "Is vaccination support available?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "buyer",
+          "label": "Main buyer / market channel",
+          "icon": "Landmark",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "cycles",
+          "label": "Batches / cycles per year",
+          "icon": "Calendar",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Feed",
+          "class": "direct"
+        },
+        {
+          "name": "Vaccination & medicine",
+          "class": "direct"
+        },
+        {
+          "name": "Chicks / day-old birds",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "goatery",
+      "name": "Goat & Sheep Rearing",
+      "icon": "PawPrint",
+      "tint": "#7c3aed",
+      "defaultUnit": "animal",
+      "questions": [
+        {
+          "key": "breed",
+          "label": "Breed",
+          "icon": "PawPrint",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "animals",
+          "label": "Number of animals",
+          "icon": "PawPrint",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "grazing",
+          "label": "Is grazing land available?",
+          "icon": "Sprout",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "vet",
+          "label": "Is veterinary support available?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Feed & fodder",
+          "class": "direct"
+        },
+        {
+          "name": "Veterinary care",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "fisheries",
+      "name": "Fisheries",
+      "icon": "Fish",
+      "tint": "#0891b2",
+      "defaultUnit": "kg",
+      "questions": [
+        {
+          "key": "species",
+          "label": "Species cultured",
+          "icon": "Fish",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "pondArea",
+          "label": "Pond / tank area",
+          "icon": "Home",
+          "type": "text",
+          "options": null,
+          "placeholder": "e.g. 0.5 acre",
+          "stage": null
+        },
+        {
+          "key": "waterYearRound",
+          "label": "Is water available year-round?",
+          "icon": "Waves",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "cycles",
+          "label": "Production cycles per year",
+          "icon": "Calendar",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Feed",
+          "class": "direct"
+        },
+        {
+          "name": "Seed / fingerlings",
+          "class": "direct"
+        },
+        {
+          "name": "Pond maintenance",
+          "class": "operating"
+        }
+      ]
+    },
+    {
+      "id": "tailoring",
+      "name": "Tailoring & Garments",
+      "icon": "Scissors",
+      "tint": "#db2777",
+      "defaultUnit": "order",
+      "questions": [
+        {
+          "key": "machines",
+          "label": "Number of sewing machines",
+          "icon": "Scissors",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "custom",
+          "label": "Custom-made or ready-made?",
+          "icon": "FileText",
+          "type": "select",
+          "options": [
+            "Custom-made",
+            "Ready-made",
+            "Both"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "segment",
+          "label": "Main customer segment",
+          "icon": "Users",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand change by season (e.g. weddings)?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "fabricSource",
+          "label": "Where does she buy fabric?",
+          "icon": "Package",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Fabric",
+          "class": "direct"
+        },
+        {
+          "name": "Thread, buttons & accessories",
+          "class": "direct"
+        },
+        {
+          "name": "Machine maintenance",
+          "class": "operating"
+        }
+      ]
+    },
+    {
+      "id": "grocery",
+      "name": "Retail / Grocery / Kirana",
+      "icon": "Store",
+      "tint": "#65a30d",
+      "defaultUnit": "item",
+      "questions": [
+        {
+          "key": "ownership",
+          "label": "Shop ownership",
+          "icon": "Home",
+          "type": "select",
+          "options": [
+            "Owned",
+            "Rented"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "supplier",
+          "label": "Main supplier source",
+          "icon": "Package",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "credit",
+          "label": "Does she give customers credit?",
+          "icon": "Banknote",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "turnoverDays",
+          "label": "Approx. stock turnover (days)",
+          "icon": "Calendar",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "footfall",
+          "label": "Customers per day (approx.)",
+          "icon": "Users",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": "existing"
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Stock purchase",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "foodprocessing",
+      "name": "Food Processing",
+      "icon": "Factory",
+      "tint": "#ea580c",
+      "defaultUnit": "unit",
+      "questions": [
+        {
+          "key": "fssai",
+          "label": "Does she have FSSAI registration?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "shelfLife",
+          "label": "Shelf life of product",
+          "icon": "Calendar",
+          "type": "text",
+          "options": null,
+          "placeholder": "e.g. 3 months",
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand change by season?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "rawSource",
+          "label": "Where does she source raw material from?",
+          "icon": "Package",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "packaging",
+          "label": "How is the product packaged?",
+          "icon": "Package",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Raw materials",
+          "class": "direct"
+        },
+        {
+          "name": "Packaging materials",
+          "class": "direct"
+        },
+        {
+          "name": "FSSAI / testing fees",
+          "class": "operating"
+        }
+      ]
+    },
+    {
+      "id": "catering",
+      "name": "Catering / Tiffin",
+      "icon": "UtensilsCrossed",
+      "tint": "#c2410c",
+      "defaultUnit": "order",
+      "questions": [
+        {
+          "key": "serviceType",
+          "label": "Type of food service",
+          "icon": "UtensilsCrossed",
+          "type": "select",
+          "options": [
+            "Tiffin service",
+            "Catering",
+            "Tea stall",
+            "Snack centre"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "kitchen",
+          "label": "Is a kitchen / workspace available?",
+          "icon": "Home",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "fssai",
+          "label": "Is FSSAI / local licence available?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "customerBase",
+          "label": "Main customer base",
+          "icon": "Users",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Raw materials / ingredients",
+          "class": "direct"
+        },
+        {
+          "name": "Packaging / disposables",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "mobilerepair",
+      "name": "Mobile Repair / CSC",
+      "icon": "Smartphone",
+      "tint": "#4338ca",
+      "defaultUnit": "service",
+      "questions": [
+        {
+          "key": "services",
+          "label": "Main services offered",
+          "icon": "Wrench",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "tools",
+          "label": "Are tools / equipment available?",
+          "icon": "Wrench",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "spares",
+          "label": "Is a regular spares supplier available?",
+          "icon": "Package",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "competition",
+          "label": "Any competitor nearby?",
+          "icon": "AlertTriangle",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Spare parts / consumables",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "handicrafts",
+      "name": "Agarbatti / Handicrafts",
+      "icon": "Palette",
+      "tint": "#a16207",
+      "defaultUnit": "unit",
+      "questions": [
+        {
+          "key": "product",
+          "label": "Product made",
+          "icon": "Palette",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "workspace",
+          "label": "Is workspace available?",
+          "icon": "Home",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "buyer",
+          "label": "Main buyer / market channel",
+          "icon": "Landmark",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand change by season (festivals)?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Raw materials",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "vegetable",
+      "name": "Vegetable Vending",
+      "icon": "Sprout",
+      "tint": "#16a34a",
+      "defaultUnit": "kg",
+      "questions": [
+        {
+          "key": "produce",
+          "label": "Main produce sold",
+          "icon": "Sprout",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "sellingUnit",
+          "label": "Type of selling unit",
+          "icon": "Store",
+          "type": "select",
+          "options": [
+            "Push cart",
+            "Roadside stall",
+            "Shop",
+            "Mobile van"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "storage",
+          "label": "Is storage / cold facility available?",
+          "icon": "Snowflake",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "procurement",
+          "label": "Main procurement source",
+          "icon": "Package",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Procurement cost",
+          "class": "direct"
+        },
+        {
+          "name": "Market / mandi fees",
+          "class": "operating"
+        }
+      ]
+    },
+    {
+      "id": "beauty",
+      "name": "Beauty Parlour & Salon",
+      "icon": "Sparkles",
+      "tint": "#be185d",
+      "defaultUnit": "service",
+      "questions": [
+        {
+          "key": "services",
+          "label": "Main services offered",
+          "icon": "Sparkles",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "chairs",
+          "label": "Number of service chairs / stations",
+          "icon": "Home",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "training",
+          "label": "Has she received training / certification?",
+          "icon": "GraduationCap",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand change by season (weddings/festivals)?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Consumables / cosmetics",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "bakery",
+      "name": "Bakery & Sweets",
+      "icon": "Cake",
+      "tint": "#b45309",
+      "defaultUnit": "unit",
+      "questions": [
+        {
+          "key": "oven",
+          "label": "What type of oven / equipment does she use?",
+          "icon": "Flame",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "fssai",
+          "label": "Does she have FSSAI registration?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "shelfLife",
+          "label": "Shelf life of products",
+          "icon": "Calendar",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand change by season (festivals)?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Flour, sugar & ingredients",
+          "class": "direct"
+        },
+        {
+          "name": "Packaging materials",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "handloom",
+      "name": "Handloom & Weaving",
+      "icon": "Grid3x3",
+      "tint": "#9333ea",
+      "defaultUnit": "piece",
+      "questions": [
+        {
+          "key": "looms",
+          "label": "Number of looms",
+          "icon": "Grid3x3",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "yarnSource",
+          "label": "Where does she buy yarn?",
+          "icon": "Package",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "buyer",
+          "label": "Main buyer (society / master weaver / direct)",
+          "icon": "Landmark",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand change by season?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Yarn",
+          "class": "direct"
+        },
+        {
+          "name": "Dyes & chemicals",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "nursery",
+      "name": "Nursery / Agri-inputs",
+      "icon": "Flower2",
+      "tint": "#15803d",
+      "defaultUnit": "plant",
+      "questions": [
+        {
+          "key": "area",
+          "label": "Land / shade-net area",
+          "icon": "Home",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "water",
+          "label": "Is irrigation water available year-round?",
+          "icon": "Waves",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "cycle",
+          "label": "Production cycle (months)",
+          "icon": "Calendar",
+          "type": "number",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "seasonal",
+          "label": "Does demand peak in a particular season?",
+          "icon": "TrendingUp",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Seeds / saplings",
+          "class": "direct"
+        },
+        {
+          "name": "Soil, pots & polybags",
+          "class": "direct"
+        },
+        {
+          "name": "Fertiliser & pesticide",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "flourmill",
+      "name": "Flour Mill / Oil Ghani",
+      "icon": "Wheat",
+      "tint": "#ca8a04",
+      "defaultUnit": "kg",
+      "questions": [
+        {
+          "key": "machine",
+          "label": "Machine type and capacity (kg/hour)",
+          "icon": "Factory",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "power",
+          "label": "Is three-phase power available?",
+          "icon": "Zap",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "service",
+          "label": "Own produce, custom milling, or both?",
+          "icon": "FileText",
+          "type": "select",
+          "options": [
+            "Own produce",
+            "Custom milling",
+            "Both"
+          ],
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "fssai",
+          "label": "Does she have FSSAI registration?",
+          "icon": "ShieldCheck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Grain / seed purchase",
+          "class": "direct"
+        },
+        {
+          "name": "Machine wear parts",
+          "class": "operating"
+        }
+      ]
+    },
+    {
+      "id": "laundry",
+      "name": "Laundry & Ironing",
+      "icon": "Shirt",
+      "tint": "#0ea5e9",
+      "defaultUnit": "piece",
+      "questions": [
+        {
+          "key": "equipment",
+          "label": "Equipment available (iron, washing machine, etc.)",
+          "icon": "Wrench",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "customers",
+          "label": "Regular customers (households / hostels / shops)",
+          "icon": "Users",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "pickup",
+          "label": "Does she offer pickup and delivery?",
+          "icon": "Truck",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Detergent & chemicals",
+          "class": "direct"
+        }
+      ]
+    },
+    {
+      "id": "stationery",
+      "name": "Stationery / Xerox / Printing",
+      "icon": "Printer",
+      "tint": "#475569",
+      "defaultUnit": "job",
+      "questions": [
+        {
+          "key": "machines",
+          "label": "Machines available (xerox, printer, etc.)",
+          "icon": "Printer",
+          "type": "text",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "location",
+          "label": "Is the shop near a school, college or office?",
+          "icon": "MapPin",
+          "type": "yesno",
+          "options": null,
+          "placeholder": null,
+          "stage": null
+        },
+        {
+          "key": "ownership",
+          "label": "Shop ownership",
+          "icon": "Home",
+          "type": "select",
+          "options": [
+            "Owned",
+            "Rented"
+          ],
+          "placeholder": null,
+          "stage": null
+        }
+      ],
+      "expenseHeads": [
+        {
+          "name": "Paper, toner & ink",
+          "class": "direct"
+        }
+      ]
+    }
+  ],
+  "commonExpenseHeads": [
+    {
+      "name": "Rent",
+      "class": "operating"
+    },
+    {
+      "name": "Electricity",
+      "class": "operating"
+    },
+    {
+      "name": "Water",
+      "class": "operating"
+    },
+    {
+      "name": "Gas / Fuel",
+      "class": "operating"
+    },
+    {
+      "name": "Transportation",
+      "class": "operating"
+    },
+    {
+      "name": "Labour / Wages",
+      "class": "operating"
+    },
+    {
+      "name": "Salaries",
+      "class": "operating"
+    },
+    {
+      "name": "Repairs & Maintenance",
+      "class": "operating"
+    },
+    {
+      "name": "Equipment maintenance",
+      "class": "operating"
+    },
+    {
+      "name": "Communication / Internet",
+      "class": "operating"
+    },
+    {
+      "name": "Marketing & Promotion",
+      "class": "operating"
+    },
+    {
+      "name": "Packaging",
+      "class": "operating"
+    },
+    {
+      "name": "Delivery / Logistics",
+      "class": "operating"
+    },
+    {
+      "name": "Shop / Stall expenses",
+      "class": "operating"
+    },
+    {
+      "name": "Storage",
+      "class": "operating"
+    },
+    {
+      "name": "Insurance",
+      "class": "operating"
+    },
+    {
+      "name": "Licenses / Registrations",
+      "class": "operating"
+    },
+    {
+      "name": "Professional services",
+      "class": "operating"
+    },
+    {
+      "name": "Miscellaneous",
+      "class": "operating"
+    },
+    {
+      "name": "Interest on existing loans",
+      "class": "finance"
+    },
+    {
+      "name": "Other financial obligations",
+      "class": "finance"
+    }
+  ]
+}
