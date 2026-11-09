@@ -10,7 +10,7 @@ import { goToStep } from '../../actions';
 
 /** Which build phase delivers each screen. Placeholder until then; navigation + autosave are real. */
 const ARRIVES_IN: Record<string, number> = {
-  location: 3, entrepreneur: 4, business: 4, details: 4,
+  entrepreneur: 4, business: 4, details: 4,
   products: 5, expenses: 5, assets: 5, loan: 5,
   future: 6, marketing: 6, growth: 6, review: 7,
 };
