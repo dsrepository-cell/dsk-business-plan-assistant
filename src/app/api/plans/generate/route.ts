@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import { aiEnabled, writeNarrative } from '@/lib/ai/write-narrative';
 import { loadReadiness } from '@/lib/case-readiness';
+import { PLAN_WRITER_IDS, planWriter } from '@/lib/plan-writers';
 import { loadPlanContext } from '@/lib/plan-data';
 import { createClient } from '@/lib/supabase/server';
 
@@ -22,9 +23,16 @@ export async function POST(req: Request) {
   } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: 'Please sign in again.' }, { status: 401 });
 
-  const body = z.object({ businessId: z.string().uuid() }).safeParse(await req.json().catch(() => null));
+  const body = z
+    .object({ businessId: z.string().uuid(), writer: z.enum(PLAN_WRITER_IDS).default('free') })
+    .safeParse(await req.json().catch(() => null));
   if (!body.success) return NextResponse.json({ error: 'Case not found.' }, { status: 400 });
   const businessId = body.data.businessId;
+  const writer = planWriter(body.data.writer);
+  if (!writer.available) {
+    return NextResponse.json({ error: `${writer.label} is coming soon. Please use ${planWriter('free').label} for now.` }, { status: 400 });
+  }
+  const useAi = writer.id !== 'free';
 
   const r = await loadReadiness(businessId);
   if (!r) return NextResponse.json({ error: 'Case not found.' }, { status: 404 });
@@ -35,7 +43,7 @@ export async function POST(req: Request) {
     );
   }
 
-  if (aiEnabled()) {
+  if (useAi && aiEnabled()) {
     const since = new Date(Date.now() - 24 * 3600 * 1000).toISOString();
     const { count } = await supabase
       .from('plan_versions')
@@ -49,7 +57,7 @@ export async function POST(req: Request) {
   }
 
   const context = await loadPlanContext(businessId, r);
-  const written = await writeNarrative(context);
+  const written = await writeNarrative(context, { allowAi: useAi });
 
   const { data: last } = await supabase
     .from('plan_versions')

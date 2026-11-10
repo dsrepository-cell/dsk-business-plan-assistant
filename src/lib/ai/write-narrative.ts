@@ -34,14 +34,14 @@ function parseJson(text: string): unknown {
 
 const unverified = (bad: string[]) => bad.map((w) => `Number "${w}" in the text is not in the verified data. Please check it.`);
 
-export async function writeNarrative(context: PlanContext): Promise<NarrativeResult> {
+export async function writeNarrative(context: PlanContext, opts: { allowAi?: boolean } = {}): Promise<NarrativeResult> {
   const standard = (): NarrativeResult => ({
     narrative: templateNarrative(context),
     warnings: [],
     model: 'standard-wording',
     promptVersion: 'standard-v1',
   });
-  if (!aiEnabled()) return standard();
+  if (!opts.allowAi || !aiEnabled()) return standard();
 
   const model = aiModel();
   let inputTokens = 0;

@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr';
 import type { Database } from '@/lib/database.types';
 import { publicEnv } from '@/lib/env';
 
-const PUBLIC_PATHS = ['/login', '/signup', '/auth/callback'];
+const PUBLIC_PATHS = ['/login', '/signup', '/forgot-password', '/auth/callback'];
 
 /** Refreshes the auth session on every request and sends signed-out users to /login. */
 export async function updateSession(request: NextRequest) {
