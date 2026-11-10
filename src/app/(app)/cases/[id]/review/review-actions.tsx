@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ArrowLeft, FileText, Loader2, Lock } from 'lucide-react';
+import { ArrowLeft, Check, FileText, Loader2, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { PLAN_WRITERS, type PlanWriterId } from '@/lib/plan-writers';
+import { cn } from '@/lib/utils';
 
 /**
  * Back to growth / Generate. Generate is disabled while anything blocks; the server route re-runs the same
@@ -24,6 +26,7 @@ export function ReviewActions({
   const router = useRouter();
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [writer, setWriter] = useState<PlanWriterId>('free');
 
   async function generate() {
     setPending(true);
@@ -32,7 +35,7 @@ export function ReviewActions({
       const res = await fetch('/api/plans/generate', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ businessId }),
+        body: JSON.stringify({ businessId, writer }),
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string; blocking?: string[] };
       if (!res.ok) {
@@ -50,6 +53,41 @@ export function ReviewActions({
 
   return (
     <div>
+      <fieldset className="mb-5" disabled={pending}>
+        <legend className="mb-2 text-[15px] font-medium">Plan writer</legend>
+        <p className="mb-3 text-xs text-muted-foreground">All numbers are calculated by the app. The writer only words the text.</p>
+        <div role="radiogroup" className="grid gap-2 sm:grid-cols-3">
+          {PLAN_WRITERS.map((w) => {
+            const selected = writer === w.id;
+            return (
+              <button
+                key={w.id}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                aria-disabled={!w.available}
+                disabled={!w.available}
+                onClick={() => w.available && setWriter(w.id)}
+                className={cn(
+                  'relative rounded-lg border bg-card p-3 text-left transition-colors',
+                  selected && 'border-primary ring-1 ring-primary',
+                  !w.available && 'cursor-not-allowed opacity-60',
+                )}
+              >
+                <span className="flex items-center justify-between gap-2">
+                  <span className="font-semibold">{w.label}</span>
+                  {w.available ? (
+                    selected && <Check className="size-4 text-primary" />
+                  ) : (
+                    <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">Coming soon</span>
+                  )}
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">{w.blurb}</span>
+              </button>
+            );
+          })}
+        </div>
+      </fieldset>
       {error && (
         <p role="alert" className="mb-4 rounded-lg bg-destructive/10 p-3.5 text-sm text-destructive">
           {error}

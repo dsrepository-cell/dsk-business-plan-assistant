@@ -28,7 +28,8 @@ function timeAgo(iso: string) {
   return rtf.format(-Math.round(mins / 1440), 'day');
 }
 
-export default async function DashboardPage() {
+export default async function DashboardPage({ searchParams }: { searchParams: Promise<{ pw?: string }> }) {
+  const { pw } = await searchParams;
   const viewer = await requireViewer();
   const supabase = await createClient();
   // RLS scopes this to the operator's centre (reviewers/admins see all).
@@ -44,6 +45,11 @@ export default async function DashboardPage() {
 
   return (
     <div>
+      {pw === 'changed' && (
+        <p role="status" className="mb-4 rounded-lg bg-primary-soft px-3.5 py-2.5 text-sm text-primary">
+          Your password has been changed.
+        </p>
+      )}
       <div className="mb-5 flex items-end justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">Cases</h1>
