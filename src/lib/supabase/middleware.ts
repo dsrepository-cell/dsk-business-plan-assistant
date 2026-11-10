@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr';
 import type { Database } from '@/lib/database.types';
 import { publicEnv } from '@/lib/env';
 
-const PUBLIC_PATHS = ['/login'];
+const PUBLIC_PATHS = ['/login', '/signup', '/auth/callback'];
 
 /** Refreshes the auth session on every request and sends signed-out users to /login. */
 export async function updateSession(request: NextRequest) {
@@ -35,7 +35,7 @@ export async function updateSession(request: NextRequest) {
     to.search = path && path !== '/' ? `?next=${encodeURIComponent(path)}` : '';
     return NextResponse.redirect(to);
   }
-  if (user && (path === '/login' || path === '/')) {
+  if (user && (path === '/login' || path === '/signup' || path === '/')) {
     const to = request.nextUrl.clone();
     to.pathname = '/dashboard';
     to.search = '';

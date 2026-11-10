@@ -9,6 +9,9 @@ import { cn } from '@/lib/utils';
 
 export const metadata = { title: 'Cases · DSK Business Plan Assistant' };
 
+/** Cases that already have a generated plan open on the plan screen instead of the wizard. */
+const HAS_PLAN = new Set(['ready_for_review', 'approved', 'submitted']);
+
 const STATUS_STYLE: Record<string, string> = {
   draft: 'bg-secondary text-secondary-foreground',
   assumptions_pending: 'bg-warning-soft text-warning-foreground',
@@ -96,7 +99,7 @@ export default async function DashboardPage() {
             return (
               <li key={c.id}>
                 <Link
-                  href={resumeHref(c.id, c.current_step)}
+                  href={HAS_PLAN.has(c.status) ? `/cases/${c.id}/plan` : resumeHref(c.id, c.current_step)}
                   className="flex items-center gap-3 rounded-xl border bg-card p-3.5 transition-colors hover:border-primary"
                 >
                   <span
