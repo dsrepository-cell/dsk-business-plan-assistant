@@ -133,3 +133,36 @@ describe('snapshot + validation scenarios', () => {
     expect(JSON.stringify(s)).not.toMatch(/NaN|null.*Infinity/);
   });
 });
+
+describe('Phase 5 additions', () => {
+  it('itemised project cost = sum(qty x unit cost) + setup costs', async () => {
+    const { summarizeAssets } = await import('./engine');
+    const s = summarizeAssets(
+      [
+        { id: 'a', name: 'Sewing machine', qty: 2, unitCost: 12500 },
+        { id: 'b', name: 'Cutting table', qty: 1, unitCost: 8000 },
+      ],
+      4500,
+    );
+    expect(s.rows.map((r) => r.total)).toEqual([25000, 8000]);
+    expect(s.assetsTotal).toBe(33000);
+    expect(s.totalProjectCost).toBe(37500);
+    expect(summarizeAssets([], -50).totalProjectCost).toBe(0);
+  });
+
+  it('baseline preview uses 0% growth and adds existing EMI to the monthly repayment', async () => {
+    const { previewAtBaseline } = await import('./engine');
+    const v = previewAtBaseline({
+      products: [p({ name: 'Blouse', qtyPerMonth: 100, sellingPrice: 400, directCostPerUnit: 180, otherCostPerUnit: 20 })],
+      expenses: [{ id: 'e', head: 'Rent', amount: 3000, frequency: 'monthly' }],
+      loan: { totalProjectCost: 60000, ownContribution: 10000, tenureMonths: 36, annualRatePct: 12, moratoriumMonths: 0, existingMonthlyEmi: 1000 },
+    });
+    expect(v.projection.map((r) => r.growthPct)).toEqual([0, 0, 0]);
+    expect(v.monthlyOperatingProfit).toBe(17000); // 100*(400-200) - 3000
+    expect(v.loan.required).toBe(50000);
+    expect(v.loan.emi).toBeCloseTo(1660.72, 2);
+    expect(v.monthlyRepayment).toBeCloseTo(2660.72, 2);
+    // Year 1: EBITDA 204000 / (12 EMIs + 12 existing EMIs)
+    expect(v.dscrYear1).toBeCloseTo(204000 / (1660.72 * 12 + 12000), 1);
+  });
+});
