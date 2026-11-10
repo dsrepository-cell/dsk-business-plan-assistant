@@ -8,7 +8,7 @@ import type { Issue } from '@/lib/readiness';
 import { cn, formatINR } from '@/lib/utils';
 import { WIZARD_STEPS } from '@/lib/wizard';
 import { goToStep } from '../../actions';
-import { requestGeneration } from './actions';
+import { createClient } from '@/lib/supabase/server';
 import { ReviewActions } from './review-actions';
 
 export const metadata = { title: 'Review · DSK Business Plan Assistant' };
@@ -60,6 +60,14 @@ export default async function ReviewStep({ params }: { params: Promise<{ id: str
   const { id } = await params;
   const r = await loadReadiness(id);
   if (!r) notFound();
+  const supabase = await createClient();
+  const { data: latest } = await supabase
+    .from('plan_versions')
+    .select('version')
+    .eq('business_id', id)
+    .order('version', { ascending: false })
+    .limit(1)
+    .maybeSingle();
   const { finance: f, readiness } = r;
   const s = readiness.snapshot;
   const approved = r.growth.isApproved;
@@ -97,7 +105,7 @@ export default async function ReviewStep({ params }: { params: Promise<{ id: str
       <IssueList id={id} title="Worth reviewing" issues={others} tone="warning" />
 
       <p className="mb-6 text-xs text-muted-foreground">
-        All figures are calculated by the system from what was entered — nothing is estimated by AI. Known limits: the
+        All figures are calculated by the system from what was entered — nothing is estimated by AI; the plan text may only quote them. Known limits: the
         DSCR is indicative; location is based on post-office data; growth figures are rule-based suggestions that the
         DSK operator has reviewed.
       </p>
@@ -105,8 +113,8 @@ export default async function ReviewStep({ params }: { params: Promise<{ id: str
       <ReviewActions
         businessId={id}
         canGenerate={readiness.canGenerate}
+        latestVersion={latest?.version ?? null}
         back={goToStep}
-        generate={requestGeneration.bind(null, id)}
       />
     </div>
   );
