@@ -10,7 +10,7 @@ import { goToStep } from '../../actions';
 
 /** Which build phase delivers each screen. Placeholder until then; navigation + autosave are real. */
 const ARRIVES_IN: Record<string, number> = {
-  future: 6, marketing: 6, growth: 6, review: 7,
+  review: 7,
 };
 
 export default async function StepPage({ params }: { params: Promise<{ id: string; step: string }> }) {
