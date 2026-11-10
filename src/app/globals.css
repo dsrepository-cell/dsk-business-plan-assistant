@@ -1,26 +1,76 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
+/* Palette ported from the prototype (kit/reference/DSK_Business_Plan_Assistant.jsx):
+   INK #16241F · MUTED #6b7a72 · LINE #E3E8E3 · PRIMARY #1F4B3F · PRIMARY_SOFT #EAF1EC
+   ACCENT #E8A33D · WARN #B33A3A · WARN_SOFT #FBF1E2 · page #F5F6F0 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --radius: 0.75rem;
+  --background: #f5f6f0;
+  --foreground: #16241f;
+  --card: #ffffff;
+  --card-foreground: #16241f;
+  --popover: #ffffff;
+  --popover-foreground: #16241f;
+  --primary: #1f4b3f;
+  --primary-foreground: #ffffff;
+  --primary-soft: #eaf1ec;
+  --secondary: #eaf1ec;
+  --secondary-foreground: #1f4b3f;
+  --muted: #d8ded9;
+  --muted-foreground: #6b7a72;
+  --accent: #e8a33d;
+  --accent-foreground: #16241f;
+  --destructive: #b33a3a;
+  --warning: #a16207;
+  --warning-soft: #fbf1e2;
+  --warning-foreground: #7a5c0a;
+  --border: #e3e8e3;
+  --input: #e3e8e3;
+  --ring: #1f4b3f;
 }
 
 @theme inline {
+  --font-sans: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces Variable", ui-serif, Georgia, serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
 }

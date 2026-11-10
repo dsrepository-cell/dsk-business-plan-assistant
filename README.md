@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DSK Business Plan Assistant
 
-## Getting Started
+Mobile-first web app for Access Livelihoods. A Digital Seva Kendra (DSK) operator sits with a woman entrepreneur, answers simple icon-led questions together with her, and gets a financially validated, loan-ready Business Plan / DPR (PDF) for DSK review.
 
-First, run the development server:
+> Status: **Phase 0 (scaffold)**. See `kit/01_MASTER_PROMPT.md` for the full phase plan.
+
+## Stack
+
+Next.js 15 (App Router, TypeScript) · Tailwind v4 + shadcn/ui · lucide-react · Supabase (Postgres, Auth, Storage, RLS) · zod · vitest · Playwright · Vercel.
+
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # fill in values; never commit them
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Script | What it does |
+|---|---|
+| `npm test` | Unit tests (financial engine + AI number guard) |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run build` | Production build |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Layout
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/lib/engine.ts        Deterministic financial engine. Every rupee figure comes from here. No AI.
+src/lib/ai/prompts.ts    System prompt, narrative schema, numberGuard (rejects invented numbers).
+src/components/ui/       shadcn/ui components (vendored source).
+kit/                     Build kit: schema, seed, prototype, reference docs. Read-only reference;
+                         excluded from lint, typecheck and tests. The app's own copies live in src/.
+```
 
-## Learn More
+## Rules that don't bend
 
-To learn more about Next.js, take a look at the following resources:
+1. **No AI-invented numbers.** Money, %, EMI, DSCR and projections come from `engine.ts`; the LLM writes prose only and `numberGuard()` checks it.
+2. **One source of truth.** Products, expenses, assets, loan and location are stored once; revenue/margin/EMI are computed, never entered.
+3. **Secrets stay server-side.** `ANTHROPIC_API_KEY` and the Supabase service-role key are never `NEXT_PUBLIC_`.
+4. **RLS on every table.** Operators see only their centre's cases; only reviewer/admin can approve.
+5. **No Aadhaar / PAN / mobile numbers in prompts or logs.**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Known limitations
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- DSCR is **indicative**: EBITDA ÷ debt service, no tax or depreciation.
+- Location data is post-office based: "village" means post-office area; "Mandal" is the directory's taluk field.
+- Growth assumptions are rule-based defaults approved by the operator, not forecasts.
 
-## Deploy on Vercel
+## Notes for contributors
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- shadcn/ui: `components.json` is configured (new-york style, lucide icons). Add components with `npx shadcn@latest add <name>`.
+- `postcss` is pinned via `overrides` to a patched release (Next 15 bundles an older one).
