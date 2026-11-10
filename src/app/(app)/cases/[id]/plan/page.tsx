@@ -185,8 +185,11 @@ export default async function PlanPage({ params }: { params: Promise<{ id: strin
             <RefreshCw /> Change data &amp; regenerate
           </Link>
         </Button>
-        <Button variant="outline" disabled title="The downloadable DPR (PDF) arrives in Phase 9">
-          <FileDown /> Download PDF (coming next)
+        <Button asChild variant={plan.status === 'approved' ? 'default' : 'outline'}>
+          {/* Plain link: the browser downloads the file the route streams back. */}
+          <a href={`/api/plans/${plan.id}/pdf`}>
+            <FileDown /> {plan.status === 'approved' ? 'Download DPR (PDF)' : 'Download draft PDF'}
+          </a>
         </Button>
       </div>
     </div>
