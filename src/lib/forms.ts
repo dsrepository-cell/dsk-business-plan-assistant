@@ -15,12 +15,8 @@ export function readNav(v: FormDataEntryValue | null): Nav {
 
 const str = (v: FormDataEntryValue | null) => (typeof v === 'string' ? v.trim() : '');
 
-/** "" → null; "1,200" / "₹ 1200" → 1200; anything else that isn't a number → NaN (caught by the schema). */
-export function parseNumber(v: FormDataEntryValue | null): number | null {
-  const s = str(v).replace(/[₹,\s]/g, '');
-  if (s === '') return null;
-  return /^-?\d+(\.\d+)?$/.test(s) ? Number(s) : Number.NaN;
-}
+export { parseNumber } from './numbers';
+import { parseNumber } from './numbers';
 
 /** Indian mobile: 10 digits starting 6–9; accepts +91 / 0 prefix and spaces. "" → null. */
 export function normaliseMobile(v: string): string | null {

@@ -383,3 +383,37 @@ export function buildSnapshot(input: {
     flags,
   };
 }
+
+/* ---------- Phase 5 additions (live screens). Additive only: nothing above changed. ---------- */
+export interface AssetItem {
+  id: string;
+  name: string;
+  qty: number;
+  unitCost: number;
+}
+
+/** Itemised project cost: equipment/stock to be bought + one-time setup costs. */
+export function summarizeAssets(items: AssetItem[], otherSetupCost: number) {
+  const rows = items.map((a) => ({ ...a, total: round2(n(a.qty) * n(a.unitCost)) }));
+  const assetsTotal = round2(rows.reduce((s, r) => s + r.total, 0));
+  const other = round2(Math.max(n(otherSetupCost), 0));
+  return { rows, assetsTotal, otherSetupCost: other, totalProjectCost: round2(assetsTotal + other) };
+}
+
+/** 0% growth: what the screens before the growth step show, so nothing is assumed that hasn't been approved. */
+export const NO_GROWTH: Assumptions = { y1: 0, y2: 0, y3: 0 };
+
+/**
+ * The live preview used while data is still being entered (products → loan screens): the full snapshot at
+ * today's level (no growth), plus the two figures those screens show that the snapshot doesn't name directly.
+ */
+export function previewAtBaseline(input: Omit<Parameters<typeof buildSnapshot>[0], 'assumptions'>) {
+  const s = buildSnapshot({ ...input, assumptions: NO_GROWTH });
+  return {
+    ...s,
+    /** New EMI + existing EMI, per month, once the moratorium is over. */
+    monthlyRepayment: round2(s.loan.emi + n(input.loan.existingMonthlyEmi)),
+    /** Year-1 debt-service coverage at today's level (moratorium months are interest-only). */
+    dscrYear1: s.projection[0]?.dscr ?? null,
+  };
+}
